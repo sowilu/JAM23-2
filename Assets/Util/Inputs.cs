@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class Inputs : MonoBehaviour
 {
     public static UnityEvent<Vector2> onMove = new();
-    public static UnityEvent onJump = new();
+    public static UnityEvent onPickDrop = new();
 
     PlayerInput playerInput;
 
@@ -16,12 +16,14 @@ public class Inputs : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         playerInput.GetUnityEvent("Move").AddListener(OnMove);
-        playerInput.GetUnityEvent("Jump").AddListener(OnJump);
+        
+        //TODO: fix detection
+        //playerInput.GetUnityEvent("PickDrop").AddListener(OnPickDrop);
     }
 
-    private void OnJump(InputAction.CallbackContext arg0)
+    public void OnPickDrop(InputAction.CallbackContext arg0)
     {
-        onJump.Invoke();
+        onPickDrop.Invoke();
     }
 
     private void OnMove(InputAction.CallbackContext context)
