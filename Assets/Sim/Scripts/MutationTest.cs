@@ -23,16 +23,21 @@ public class MutationTest : MonoBehaviour
             if (other != null)
             {
                 //get item component
-                            var item = other.gameObject.GetComponent<Item>();
-                            
-                            //check mutation type
-                            if (item.mutation == Mutation.Health)
-                            {
-                                //mutate health
-                                Mutator.inst.Mutate(item.hpBoost, item.maxHpBoost);
-                            }
-                            
-                            Destroy(other.gameObject);
+                var item = other.gameObject.GetComponent<Item>();
+                ApplyStats(item);
+                
+                Destroy(other.gameObject);
             }
+    }
+
+
+    void ApplyStats(Item item)
+    {
+        //check mutation type
+        if (item.mutation == Mutation.Health)
+        {
+            //mutate health
+            Mutator.inst.Mutate(item.hpBoost, item.maxHpBoost);
+        }
     }
 }
