@@ -37,6 +37,11 @@ public class Health : MonoBehaviour
             {
                 Die();
             }
+
+            if (hp > maxHp)
+            {
+                hp = maxHp;
+            }
         }
     }
 

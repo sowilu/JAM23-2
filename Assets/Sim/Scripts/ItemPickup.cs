@@ -44,7 +44,7 @@ public class ItemPickup : MonoBehaviour
 
     void Pickup()
     {
-        if (itemInHands != null) return;
+        if (itemInHands != null || itemsInRange.Count == 0) return;
             //get nearest item
         itemInHands = FindNearest();
         
@@ -61,6 +61,8 @@ public class ItemPickup : MonoBehaviour
         
         //reset position
         itemInHands.localPosition = Vector3.zero;
+        
+        itemsInRange.Remove(itemInHands);
     }
 
     Transform FindNearest()
