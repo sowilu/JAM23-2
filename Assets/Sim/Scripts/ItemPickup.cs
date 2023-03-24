@@ -39,6 +39,7 @@ public class ItemPickup : MonoBehaviour
             itemInHands.position = hit.point + Vector3.up * 0.5f;
         }
         
+        //itemsInRange.Remove(itemInHands);
         itemInHands = null;
     }
 
@@ -47,6 +48,8 @@ public class ItemPickup : MonoBehaviour
         if (itemInHands != null || itemsInRange.Count == 0) return;
             //get nearest item
         itemInHands = FindNearest();
+
+        if (itemInHands == null) return;
         
         if (hands == null)
         {
@@ -62,7 +65,7 @@ public class ItemPickup : MonoBehaviour
         //reset position
         itemInHands.localPosition = Vector3.zero;
         
-        itemsInRange.Remove(itemInHands);
+        //itemsInRange.Remove(itemInHands);
     }
 
     Transform FindNearest()
@@ -78,6 +81,14 @@ public class ItemPickup : MonoBehaviour
                 nearestItem = item;
             }
         }
+        
+        //if nearest item is too far
+        if (nearestDistance > nearestItem.GetComponent<SphereCollider>().radius)
+        {
+            itemsInRange.Remove(nearestItem);
+            return null;
+        }
+        
 
         return nearestItem;
     }
