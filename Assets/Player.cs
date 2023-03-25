@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public struct BodyPart
@@ -17,6 +18,13 @@ public class Player : MonoBehaviour
     public Health health;
     
     public List<BodyPart> bodyParts;
+    
+    [FormerlySerializedAs("meleeAttackBase")] [HideInInspector]
+    public MeleeAttack meleeAttack;
+    [FormerlySerializedAs("rangeAttackBase")] [HideInInspector]
+    public RangedAttack rangeAttack;
+    [FormerlySerializedAs("specialAttackBase")] [HideInInspector]
+    public SpecialAttack specialAttack;
    
     private void Awake()
     {
