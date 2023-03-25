@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class SpellParticle : MonoBehaviour
 {
     public GameObject magicEffect;
+    public GameObject bounceEffect;
     
     public float chanceOfSuccess = 0.6f;
     private int bounces = 0;
@@ -21,6 +19,9 @@ public class SpellParticle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(bounceEffect != null)
+            Instantiate(bounceEffect, transform.position, transform.rotation);
+        
         if (collision.transform.CompareTag("Enemy"))
         {
             //ensure that after one bounce off it will work next time
