@@ -15,5 +15,7 @@ public class HealthBar : MonoBehaviour
         //smoothly scale bar according to health
         bar.localScale = Vector3.Lerp(bar.localScale, new Vector3(playerHealth.HP / 100f, 1, 1), Time.deltaTime * 10);
         
+        //clamp
+        bar.localScale = new Vector3(Mathf.Clamp(bar.localScale.x, 0, 1), 1, 1);
     }
 }

@@ -70,6 +70,8 @@ public class GameManager : UnitySingleton<GameManager>
 
     public void ShowLeaderboard()
     {
+        if(GameplayUI.Instance.leaderboardUI.gameObject.activeSelf) return;
+        
         var scores = Leaderboard.inst.Add("Hill Billy", score);
         GameplayUI.Instance.leaderboardUI.gameObject.SetActive(true);
         GameplayUI.Instance.leaderboardUI.Populate(scores);
