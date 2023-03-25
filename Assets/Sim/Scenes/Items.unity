@@ -311,6 +311,66 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &237710658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 237710661}
+  - component: {fileID: 237710660}
+  - component: {fileID: 237710659}
+  m_Layer: 0
+  m_Name: LeaderboardTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &237710659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237710658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c508f85e14f1c94dbd0af40f6eba6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leaderboardCode: infoshow23
+--- !u!114 &237710660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237710658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e4d3d7b9ef5f448be94f8869763f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Test
+  score: 100
+--- !u!4 &237710661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237710658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.6100001, z: -9.937863}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &320035999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792595046533828745, guid: 702b90b8a470d9143bd4dcb0a23e84e4, type: 3}
@@ -1022,11 +1082,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5485474868413283080, guid: 962a29a50fa194a4bb0b99d0a042ea8c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 962a29a50fa194a4bb0b99d0a042ea8c, type: 3}
---- !u!1 &1364514325 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4675083333943743537, guid: 962a29a50fa194a4bb0b99d0a042ea8c, type: 3}
-  m_PrefabInstance: {fileID: 1364514324}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1364514326 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4675083333692425814, guid: 962a29a50fa194a4bb0b99d0a042ea8c, type: 3}
@@ -1048,7 +1103,7 @@ MonoBehaviour:
   coolDown: 1
   canAttack: 1
   swing: 1
-  swingEffect: {fileID: 1364514325}
+  swingEffect: {fileID: 0}
 --- !u!1 &1875098903
 GameObject:
   m_ObjectHideFlags: 0
