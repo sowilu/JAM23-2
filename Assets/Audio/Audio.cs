@@ -6,7 +6,6 @@ public class Audio : UnitySingleton<Audio>
 
     private void Awake()
     {
-        print("asd");
         if(!source)source = gameObject.AddComponent<AudioSource>();
     }
     

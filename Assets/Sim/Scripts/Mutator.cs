@@ -53,8 +53,10 @@ public class Mutator : MonoBehaviour
     {
         Player.inst.GetComponent<Wand>().coolDown += spellCooldownBoost;
         
+        /*
         if(Player.inst.meleeAttack != null)
             Player.inst.meleeAttack.coolDown += meleeCooldownBoost;
+            */
         
         if(Player.inst.rangeAttack != null)
             Player.inst.rangeAttack.coolDown += rangeCooldownBoost;
@@ -94,11 +96,11 @@ public class Mutator : MonoBehaviour
             if (attack != null)
             {
                 //find out if its melee range or special and add it to players reference
-                if (attack is MeleeAttack)
+                /*if (attack is MelleeAttack)
                 {
-                    Player.inst.meleeAttack = attack as MeleeAttack;
-                }
-                else if (attack is RangedAttack)
+                    Player.inst.meleeAttack = attack as MelleeAttack;
+                }*/
+                 if (attack is RangedAttack)
                 {
                     Player.inst.rangeAttack = attack as RangedAttack;
                 }

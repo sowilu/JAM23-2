@@ -12,12 +12,18 @@ public class Enemy : MonoBehaviour
     public Transform target;
     public float cooldown = 3;
     
-    NavMeshAgent agent;
+    public Health health;
+    public NavMeshAgent agent;
     bool canAttack = true;
-    
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+        agent = GetComponent<NavMeshAgent>();
+    }
+
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.stoppingDistance = 1;
     }

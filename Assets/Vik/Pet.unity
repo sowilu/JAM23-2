@@ -2810,7 +2810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e1b9eaea4eec74c8a0251c4528439c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
   targetDir: {x: 0, y: 0, z: 0}
   gravity: 10
 --- !u!54 &543450652518933235

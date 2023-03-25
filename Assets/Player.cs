@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public List<BodyPart> bodyParts;
     
     [FormerlySerializedAs("meleeAttackBase")] [HideInInspector]
-    public MeleeAttack meleeAttack;
+    public MelleeAttack meleeAttack;
     [FormerlySerializedAs("rangeAttackBase")] [HideInInspector]
     public RangedAttack rangeAttack;
     [FormerlySerializedAs("specialAttackBase")] [HideInInspector]
