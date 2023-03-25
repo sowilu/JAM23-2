@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1edb5d3da537844db6c4b6018a717eb, type: 3}
-  m_Name: Default Sound
+  m_Name: Die
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 874b7686081fe6748b6398c3c353cae4, type: 3}
-  pitch: {x: 1, y: 1.1277049}
+  clip: {fileID: 8300000, guid: 7af1e6a303754e240906e23a03b6e046, type: 3}
+  pitch: {x: 0.856332, y: 1.1277049}

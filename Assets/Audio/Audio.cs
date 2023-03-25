@@ -11,17 +11,19 @@ public class Audio : UnitySingleton<Audio>
     
     
     
-    public static void Play(AudioClip clip)
+    public static void Play(AudioClip clip, float pitch = 1f)
     {
         if (clip == null) return;
         if (Instance == null) return;
         
+        Instance.source.pitch = pitch;
         Instance.source.PlayOneShot(clip);
     }
 
 
     public static void Play(Sound sound)
     {
-        Play(sound.clip);
+        var pitch = Random.Range(sound.pitch.x, sound.pitch.y);
+        Play(sound.clip,pitch);
     }
 }

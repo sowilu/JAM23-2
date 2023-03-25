@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -8,7 +6,7 @@ public class Sound : ScriptableObject
 {
     public AudioClip clip;
 
-
+    [MinMaxSlider(0.5f,2f)] public Vector2 pitch = Vector2.one;
     
     
     [Button()]

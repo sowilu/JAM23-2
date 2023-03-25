@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1edb5d3da537844db6c4b6018a717eb, type: 3}
-  m_Name: Default Sound
+  m_Name: Swoosh
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 874b7686081fe6748b6398c3c353cae4, type: 3}
-  pitch: {x: 1, y: 1.1277049}
+  clip: {fileID: 8300000, guid: b4a92e481d6919b44afaf5c05a59540d, type: 3}
+  pitch: {x: 0.7924796, y: 1.0319263}

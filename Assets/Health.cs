@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,7 @@ public class Health : MonoBehaviour
 
     [Header("Effects")] [SerializeField] GameObject deathEffect;
     [SerializeField] GameObject damageEffect;
-
+    public bool tweenOnDamage = true;
 
     public bool autoDestroy;
 
@@ -35,6 +36,7 @@ public class Health : MonoBehaviour
             var damage = hp - value;
             onDamage.Invoke(damage);
             onAnyDamage.Invoke(damage);
+            if (tweenOnDamage) StartCoroutine(TweenRoutine());
             if (damageEffect) Instantiate(damageEffect, transform.position, transform.rotation);
             if (hp <= 0)
             {
@@ -45,6 +47,15 @@ public class Health : MonoBehaviour
             {
                 hp = maxHp;
             }
+        }
+    }
+
+    IEnumerator TweenRoutine()
+    {
+        for(float i = 1.3f; i > 1; i -= Time.deltaTime * 2)
+        {
+            transform.localScale = Vector3.one * i;
+            yield return null;
         }
     }
 
