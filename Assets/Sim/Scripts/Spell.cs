@@ -23,9 +23,6 @@ public enum BodyPartType
 
 public class Spell : MonoBehaviour
 {
-    public float chanceOfSuccess = 0.6f;
-    private int bounces = 0;
-    
     [EnumFlags]
     public Mutation mutation;
     
@@ -45,21 +42,5 @@ public class Spell : MonoBehaviour
     [ShowIf("mutation", Mutation.BodyPart)]
     public GameObject bodyPartPrefab;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("Enemy"))
-        {
-            //ensure that after one bounce off it will work next time
-            if(Random.Range(0f, 1f) < chanceOfSuccess && bounces == 0 || bounces == 1)
-            {
-                Mutator.inst.Mutate(this);
-                Destroy(gameObject);
-                bounces = 0;
-            }
-            else
-            {
-                bounces++;
-            }
-        }
-    }
+    
 }
