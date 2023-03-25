@@ -8,9 +8,9 @@ using Random = UnityEngine.Random;
 
 public enum Mutation
 {
-    Health,
-    AI,
-    BodyPart
+    Endurance,
+    Agility,
+    Attack
 }
 
 public enum BodyPartType
@@ -23,24 +23,34 @@ public enum BodyPartType
 
 public class Spell : MonoBehaviour
 {
-    [EnumFlags]
-    public Mutation mutation;
-    
-    public string description;
-    
-    [ShowIf("mutation", Mutation.Health)]
-    [Header("Health")]
-    public int maxHpBoost;
-    [ShowIf("mutation", Mutation.Health)]
-    public int hpBoost;
-    
-    
-    [FormerlySerializedAs("bodyPart")]
-    [ShowIf("mutation", Mutation.BodyPart)]
     [Header("Body Part")]
     public BodyPartType bodyPartType;
-    [ShowIf("mutation", Mutation.BodyPart)]
     public GameObject bodyPartPrefab;
-
     
+    [EnumFlags]
+    public Mutation mutation;
+
+    [ShowIf("mutation", Mutation.Endurance)]
+    [Header("Health")]
+    public int maxHpBoost;
+    [ShowIf("mutation", Mutation.Endurance)]
+    public int hpBoost;
+    
+    [FormerlySerializedAs("speed")]
+    [ShowIf("mutation", Mutation.Agility)]
+    [Header("Speed")]
+    public float speedBoost;
+
+    [ShowIf("mutation", Mutation.Attack)] 
+    [Header("Attacks")]
+    public float spellCooldownBoost;
+    [ShowIf("mutation", Mutation.Attack)] 
+    public float meleeCooldownBoost;
+    [ShowIf("mutation", Mutation.Attack)] 
+    public float rangeCooldownBoost;
+    [ShowIf("mutation", Mutation.Attack)] 
+    public float specialCooldownBoost;
+    
+    
+    public string description;
 }
