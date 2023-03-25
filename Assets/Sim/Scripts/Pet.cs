@@ -14,7 +14,6 @@ public class Pet : MonoBehaviour
    public static Pet inst;
 
    public Health health;
-   public Brain brain;
 
    public List<BodyPart> bodyParts;
    
