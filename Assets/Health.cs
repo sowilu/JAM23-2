@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    public static UnityEvent<int> onAnyDamage = new(); 
+    
     [Min(1)] public int maxHp = 100;
 
     [Min(1)] [SerializeField] private int hp;
@@ -32,6 +34,7 @@ public class Health : MonoBehaviour
 
             var damage = hp - value;
             onDamage.Invoke(damage);
+            onAnyDamage.Invoke(damage);
             if (damageEffect) Instantiate(damageEffect, transform.position, transform.rotation);
             if (hp <= 0)
             {
