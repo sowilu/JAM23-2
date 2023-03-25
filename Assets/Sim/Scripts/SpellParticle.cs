@@ -35,6 +35,9 @@ public class SpellParticle : MonoBehaviour
                 if(magicEffect != null)
                     Instantiate(magicEffect, transform.position, Quaternion.identity);
                 
+                Destroy(collision.gameObject);
+                Player.inst.transform.position = collision.transform.position;
+                
                 Destroy(gameObject);
             }
             else

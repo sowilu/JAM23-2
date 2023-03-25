@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class UiFollower : MonoBehaviour
 {
    public Vector3 offset = Vector3.up * 2;
@@ -16,7 +14,10 @@ public class UiFollower : MonoBehaviour
    }
 
    void LateUpdate()
-    {
+   {
+       if (target == null) return;
+       
+       
         var targetPos = cam.WorldToScreenPoint(target.position + offset)  + offset;
         
         //lerp to target

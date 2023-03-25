@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Mutator : MonoBehaviour
+public class Mutator : UnitySingleton<Mutator>
 {
     public UnityEvent<string> onMutate;
     
     public static Mutator inst;
+    
 
     private void Awake()
     {
@@ -25,7 +23,8 @@ public class Mutator : MonoBehaviour
     public void Mutate(Spell spell)
     {
         if (spell == null) return;
-        
+
+
         //TODO: check why item passes not null check but is still null here
         //try
         //{

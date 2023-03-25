@@ -26,6 +26,8 @@ public class GameplayUI : UnitySingleton<GameplayUI>
             scoreText.text = GameManager.score.ToString();
             highScoreText.text = GameManager.highScore.ToString();
         });
+        
+        announceTextCanvasGroup.alpha = 0;
     }
 
 
@@ -47,6 +49,7 @@ public class GameplayUI : UnitySingleton<GameplayUI>
             announceTextCanvasGroup.alpha = 1f - t / fadeDuration;
             await Task.Yield();
         }
+        announceTextCanvasGroup.alpha = 0f;
         
         announceText.text = "";
     }

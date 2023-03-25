@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     public float speed;
     public Vector3 targetDir;
+    public float rotateSpeed = 720;
 
     [Header("Jumping")] public float gravity = 10;
     
@@ -19,10 +20,17 @@ public class Movement : MonoBehaviour
     {
         rb.velocity = targetDir * speed;
         
-        //if player isnt rotated towards targetDir, rotate towards it
-        if (Vector3.Angle(transform.forward, targetDir) > 1)
+        transform.forward = Vector3.RotateTowards( transform.forward, targetDir, Mathf.Deg2Rad * rotateSpeed * Time.deltaTime, 0.0f);
+
+        if (targetDir != Vector3.zero)
         {
-            transform.forward = Vector3.Lerp(transform.forward, targetDir, 0.1f);
+            // jumpy movement animation
+            // if on grond, then jump
+            var grounded = Physics.Raycast(transform.position, Vector3.down, 0.1f);
+            if (grounded)
+            {
+                rb.velocity += Vector3.up * gravity;
+            }
         }
     }
 
