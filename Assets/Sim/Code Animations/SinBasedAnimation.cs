@@ -20,7 +20,7 @@ public class SinBasedAnimation : MonoBehaviour
         {
             var rotation = mainDirection * Mathf.Sin(Time.time * speed) * angle + defaultRotation;
                     
-            transform.rotation = Quaternion.Euler(rotation);
+            transform.localRotation = Quaternion.Euler(rotation);
         }
 
         if (move)

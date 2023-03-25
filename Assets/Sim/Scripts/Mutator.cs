@@ -131,7 +131,9 @@ public class Mutator : MonoBehaviour
             message += "I've become faster";
         if(speed < 0)
             message += "I've become slower";
-        
+
+
+        if (Player.inst.movement.speed > 8) Player.inst.movement.speed = 8;
         onMutate.Invoke(message);
     }
 }
