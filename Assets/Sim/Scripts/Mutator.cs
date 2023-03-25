@@ -43,7 +43,7 @@ public class Mutator : MonoBehaviour
 
     public void Mutate(GameObject prefab, BodyPartType type)
     {
-        var bodyPart = PlayerStats.inst.bodyParts.Find(x => x.type == type);
+        var bodyPart = Player.inst.bodyParts.Find(x => x.type == type);
         if (bodyPart.position.childCount > 0)
         {
             //Destroy(bodyPart.position.GetChild(0).gameObject);
@@ -58,8 +58,8 @@ public class Mutator : MonoBehaviour
 
     public void Mutate(int hp = 0, int maxHp = 0)
     {
-        PlayerStats.inst.health.maxHp += maxHp;
-        PlayerStats.inst.health.HP += hp;
+        Player.inst.health.maxHp += maxHp;
+        Player.inst.health.HP += hp;
 
         var message = "Master, ";
         if (maxHp > 0)

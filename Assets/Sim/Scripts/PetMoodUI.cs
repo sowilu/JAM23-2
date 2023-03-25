@@ -10,7 +10,8 @@ public class PetMoodUI : MonoBehaviour
     
     void Start()
     {
-        Mutator.inst.onMutate.AddListener(ShowMood);
+        if(Mutator.inst != null)
+            Mutator.inst.onMutate.AddListener(ShowMood);
     }
 
     void ShowMood(string mood)
