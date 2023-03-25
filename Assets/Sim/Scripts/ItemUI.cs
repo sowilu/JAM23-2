@@ -21,12 +21,12 @@ public class ItemUI : MonoBehaviour
         }
     }
     
-    public void DisplayItem(Item item)
+    public void DisplayItem(Spell spell)
     {
-        popup.text.text = item.description;
+        popup.text.text = spell.description;
         
         //set popups position above item
-        popup.transform.position = Camera.main.WorldToScreenPoint(item.transform.position + Vector3.up);
+        popup.transform.position = Camera.main.WorldToScreenPoint(spell.transform.position + Vector3.up);
         
         popup.gameObject.SetActive(true);
     }

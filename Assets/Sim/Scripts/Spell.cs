@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public enum Mutation
 {
@@ -19,8 +21,11 @@ public enum BodyPartType
     Tail
 }
 
-public class Item : MonoBehaviour
+public class Spell : MonoBehaviour
 {
+    public float chanceOfSuccess = 0.6f;
+    private int bounces = 0;
+    
     [EnumFlags]
     public Mutation mutation;
     
@@ -39,30 +44,22 @@ public class Item : MonoBehaviour
     public BodyPartType bodyPartType;
     [ShowIf("mutation", Mutation.BodyPart)]
     public GameObject bodyPartPrefab;
-   
-    private void OnTriggerEnter(Collider other)
-    { 
-        //if items has parent return
-        if (transform.parent != null)
-        {
-            ItemUI.inst.TurnOffPopup();
-            return;
-        }
-        
-        //if colliding wih player, display popup
-        if (other.CompareTag("Player"))
-        {
-            ItemUI.inst.DisplayItem(this);
-        }
-    }
-    
-    
-    private void OnTriggerExit(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        //if player leaves trigger, turn off popup
-        if (other.CompareTag("Player"))
+        if (collision.transform.CompareTag("Enemy"))
         {
-            ItemUI.inst.TurnOffPopup();
+            //ensure that after one bounce off it will work next time
+            if(Random.Range(0f, 1f) < chanceOfSuccess && bounces == 0 || bounces == 1)
+            {
+                Mutator.inst.Mutate(this);
+                Destroy(gameObject);
+                bounces = 0;
+            }
+            else
+            {
+                bounces++;
+            }
         }
     }
 }

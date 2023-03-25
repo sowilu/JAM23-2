@@ -23,7 +23,7 @@ public class MutationTest : MonoBehaviour
             if (other != null)
             {
                 //get item component
-                var item = other.gameObject.GetComponent<Item>();
+                var item = other.gameObject.GetComponent<Spell>();
                 Mutator.inst.Mutate(item);
                 
                 Destroy(other.gameObject);

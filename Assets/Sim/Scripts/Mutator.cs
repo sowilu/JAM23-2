@@ -22,20 +22,20 @@ public class Mutator : MonoBehaviour
         }
     }
     
-    public void Mutate(Item item)
+    public void Mutate(Spell spell)
     {
-        if (item == null) return;
+        if (spell == null) return;
         
         //TODO: check why item passes not null check but is still null here
         try
         {
-            if (item.mutation == Mutation.Health)
+            if (spell.mutation == Mutation.Health)
             {
-                Mutate(item.hpBoost, item.maxHpBoost);
+                Mutate(spell.hpBoost, spell.maxHpBoost);
             }
-            else if(item.mutation == Mutation.BodyPart)
+            else if(spell.mutation == Mutation.BodyPart)
             {
-                Mutate(item.bodyPartPrefab, item.bodyPartType);
+                Mutate(spell.bodyPartPrefab, spell.bodyPartType);
             }
         }
         catch(Exception){}
@@ -43,7 +43,7 @@ public class Mutator : MonoBehaviour
 
     public void Mutate(GameObject prefab, BodyPartType type)
     {
-        var bodyPart = Pet.inst.bodyParts.Find(x => x.type == type);
+        var bodyPart = PlayerStats.inst.bodyParts.Find(x => x.type == type);
         if (bodyPart.position.childCount > 0)
         {
             //Destroy(bodyPart.position.GetChild(0).gameObject);
@@ -58,8 +58,8 @@ public class Mutator : MonoBehaviour
 
     public void Mutate(int hp = 0, int maxHp = 0)
     {
-        Pet.inst.health.maxHp += maxHp;
-        Pet.inst.health.HP += hp;
+        PlayerStats.inst.health.maxHp += maxHp;
+        PlayerStats.inst.health.HP += hp;
 
         var message = "Master, ";
         if (maxHp > 0)

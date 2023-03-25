@@ -9,9 +9,9 @@ public struct BodyPart
    public BodyPartType type;
    public Transform position;
 }
-public class Pet : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
-   public static Pet inst;
+   public static PlayerStats inst;
 
    public Health health;
 
