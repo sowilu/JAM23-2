@@ -92,27 +92,11 @@ public class Mutator : MonoBehaviour
         {
             var newPart = Instantiate(prefab, bodyPart.position);
             newPart.transform.localPosition = Vector3.zero;
-            var attack = newPart.GetComponent<AttackBase>();
-
-            if (attack != null)
-            {
-                //find out if its melee range or special and add it to players reference
-                /*if (attack is MelleeAttack)
-                {
-                    Player.inst.meleeAttack = attack as MelleeAttack;
-                }*/
-                 if (attack is RangedAttack)
-                {
-                    Player.inst.rangeAttack = attack as RangedAttack;
-                }
-                else if (attack is SpecialAttack)
-                {
-                    Player.inst.specialAttack = attack as SpecialAttack;
-                }
-                 attack.StartAutoAttack();
-            }
             
-           
+            var attack = newPart.GetComponent<MelleeAttack>();
+
+            if(attack != null)
+                attack.StartAttack();
         }
     }
 

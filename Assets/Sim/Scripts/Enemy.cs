@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         agent.speed = speed;
-        agent.stoppingDistance = 1;
+        agent.stoppingDistance = 3;
     }
 
     private void Update()

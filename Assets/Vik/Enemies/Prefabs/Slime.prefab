@@ -281,8 +281,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   hp: 0
-  deathEffect: {fileID: 0}
-  damageEffect: {fileID: 0}
+  deathEffect: {fileID: 5452201393596370828, guid: e855b506473134948a2120fbda23aba3, type: 3}
+  damageEffect: {fileID: 8356677573697912285, guid: 75f6e5b5220e5db4c9773e2c06ef0ac3, type: 3}
+  tweenOnDamage: 1
   autoDestroy: 1
 --- !u!1001 &5957401253305787177
 PrefabInstance:

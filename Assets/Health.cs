@@ -10,11 +10,15 @@ public class Health : MonoBehaviour
 
     [Min(1)] [SerializeField] private int hp;
 
-    [Header("Events")] UnityEvent onDie = new();
-    UnityEvent<int> onDamage = new();
+    [Header("Events")] 
+    public UnityEvent onDie = new();
+    public UnityEvent<int> onDamage = new();
 
-    [Header("Effects")] [SerializeField] GameObject deathEffect;
+    [Header("Effects")] 
+    [SerializeField] GameObject deathEffect;
     [SerializeField] GameObject damageEffect;
+    [SerializeField] GameObject bloodPuddle;
+    
     public bool tweenOnDamage = true;
 
     public bool autoDestroy;
@@ -31,8 +35,6 @@ public class Health : MonoBehaviour
         get => hp;
         set
         {
-            hp = value;
-
             var damage = hp - value;
             onDamage.Invoke(damage);
             onAnyDamage.Invoke(damage);
@@ -42,7 +44,9 @@ public class Health : MonoBehaviour
             {
                 Die();
             }
-
+            
+            hp = value;
+            
             if (hp > maxHp)
             {
                 hp = maxHp;
@@ -65,7 +69,12 @@ public class Health : MonoBehaviour
 
         if (autoDestroy)
         {
-            if (deathEffect) Instantiate(deathEffect, transform.position, transform.rotation);
+            if (deathEffect) 
+                Instantiate(deathEffect, transform.position, transform.rotation);
+
+            if (bloodPuddle)
+                Instantiate(bloodPuddle, transform.position, Quaternion.Euler(90, Random.Range(0, 360), 0)).transform.localScale = new Vector3(Random.Range(0.9f, 1.8f), 1, Random.Range(0.9f, 1.8f));
+            
             Destroy(gameObject);
         }
     }

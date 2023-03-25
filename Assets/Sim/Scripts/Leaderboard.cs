@@ -45,6 +45,8 @@ public class Leaderboard : MonoBehaviour
         //print(string.Join("\n", board.ToArray()));
         return board;
     }
+    
+    
 
     public void Clear()
     {

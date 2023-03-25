@@ -7,7 +7,7 @@ public class MelleeAttack : MonoBehaviour
     public Sound attackSound;
     public Bullet attackEffect;
 
-    private void Start() => AttackRoutine();
+    public void StartAttack() => AttackRoutine();
 
     async void AttackRoutine()
     {
