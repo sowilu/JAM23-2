@@ -4,39 +4,43 @@ using UnityEngine;
 
 public class CameraShake : UnitySingleton<CameraShake>
 {
-    public static void SmallShake()
+    public float shakeDuration = 0.5f;
+    public float shakeAmount = 0.1f;
+
+    private Vector3 originalPosition;
+    private float currentShakeDuration = 0f;
+
+    private void Awake()
     {
-        Instance.Shake(0.1f, 0.1f);
+        originalPosition = transform.localPosition;
     }
 
-    public static void BigShake()
+    private void Update()
     {
-        Instance.Shake(0.2f, 0.2f);
-    }
-    
-    public void Shake(float duration, float magnitude)
-    {
-        StartCoroutine(ShakeCoroutine(duration, magnitude));
-    }
-
-    private IEnumerator ShakeCoroutine(float duration, float magnitude)
-    {
-        Vector3 originalPos = transform.localPosition;
-
-        float elapsed = 0.0f;
-
-        while (elapsed < duration)
+        if (currentShakeDuration > 0)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+            // Generate random offset for camera position
+            Vector3 randomOffset = Random.insideUnitCircle * shakeAmount;
 
-            transform.localPosition = new Vector3(x, y, originalPos.z);
+            // Apply the offset to the camera's position
+            transform.localPosition = originalPosition + randomOffset;
 
-            elapsed += Time.deltaTime;
-
-            yield return null;
+            // Decrease shake duration over time
+            currentShakeDuration -= Time.deltaTime;
         }
+        else
+        {
+            // Reset camera position to original position
+            transform.localPosition = originalPosition;
+        }
+    }
 
-        transform.localPosition = originalPos;
+    public void ShakeCamera()
+    {
+        // Start a new camera shake if one isn't already in progress
+        if (currentShakeDuration <= 0)
+        {
+            currentShakeDuration = shakeDuration;
+        }
     }
 }
