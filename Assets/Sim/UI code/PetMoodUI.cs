@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,8 +17,17 @@ public class PetMoodUI : MonoBehaviour
 
     void ShowMood(string mood)
     {
-        textBox.text = mood;
-        StartCoroutine(ShowMoodRoutine());
+        if (string.IsNullOrEmpty(mood))
+            return;
+        //TODO: check why item passes not null check but is still null here
+        try
+        {
+            textBox.text = mood;
+            StartCoroutine(ShowMoodRoutine());
+        }
+        catch (Exception)
+        {
+        }
     }
 
     IEnumerator ShowMoodRoutine()

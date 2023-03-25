@@ -27,8 +27,8 @@ public class Mutator : MonoBehaviour
         if (spell == null) return;
         
         //TODO: check why item passes not null check but is still null here
-        try
-        {
+        //try
+        //{
             Mutate(spell.bodyPartPrefab, spell.bodyPartType);
             
             if (spell.mutation == Mutation.Endurance)
@@ -43,8 +43,8 @@ public class Mutator : MonoBehaviour
             {
                 Mutate(spell.meleeCooldownBoost, spell.rangeCooldownBoost, spell.specialCooldownBoost);
             }
-        }
-        catch(Exception){}
+        //}
+        //catch(Exception){}
     }
 
     public void Mutate(float spellCooldownBoost = 0,float meleeCooldownBoost = 0, float rangeCooldownBoost = 0, float specialCooldownBoost = 0)
@@ -57,34 +57,53 @@ public class Mutator : MonoBehaviour
 
     public void Mutate(GameObject prefab, BodyPartType type)
     {
+        var containsPart = false;
         var bodyPart = Player.inst.bodyParts.Find(x => x.type == type);
         if (bodyPart.position.childCount > 0)
         {
-            //Destroy(bodyPart.position.GetChild(0).gameObject);
-            bodyPart.position.GetChild(0).gameObject.SetActive(false);
+            //disable all children
+            foreach (Transform child in bodyPart.position)
+            {
+                //if child is the same as prefab activate it
+                if (child.gameObject.name.Contains(prefab.name))
+                {
+                    child.gameObject.SetActive(true);
+                    containsPart = true;
+                    onMutate.Invoke($"I don't need any more {prefab.name}");
+                    break;
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+                
+            }
         }
-        var newPart = Instantiate(prefab, bodyPart.position);
-        newPart.transform.localPosition = Vector3.zero;
 
-        var attack = newPart.GetComponent<AttackBase>();
-        if (attack != null)
+        if (!containsPart)
         {
-            //find out if its melee range or special and add it to players refference
-            if (attack is MeleeAttack)
-            {
-                Player.inst.meleeAttack = attack as MeleeAttack;
-            }
-            else if (attack is RangedAttack)
-            {
-                Player.inst.rangeAttack = attack as RangedAttack;
-            }
-            else if (attack is SpecialAttack)
-            {
-                Player.inst.specialAttack = attack as SpecialAttack;
-            }
-        }
+            var newPart = Instantiate(prefab, bodyPart.position);
+            newPart.transform.localPosition = Vector3.zero;
+            var attack = newPart.GetComponent<AttackBase>();
 
-        onMutate.Invoke($"I've grown {prefab.name}");
+            if (attack != null)
+            {
+                //find out if its melee range or special and add it to players refference
+                if (attack is MeleeAttack)
+                {
+                    Player.inst.meleeAttack = attack as MeleeAttack;
+                }
+                else if (attack is RangedAttack)
+                {
+                    Player.inst.rangeAttack = attack as RangedAttack;
+                }
+                else if (attack is SpecialAttack)
+                {
+                    Player.inst.specialAttack = attack as SpecialAttack;
+                }
+            }
+            onMutate.Invoke($"I've grown {prefab.name}");
+        }
     }
 
     
@@ -110,7 +129,7 @@ public class Mutator : MonoBehaviour
         var message = "";
         if (speed > 0)
             message += "I've become faster";
-        if(speed > 0)
+        if(speed < 0)
             message += "I've become slower";
         
         onMutate.Invoke(message);

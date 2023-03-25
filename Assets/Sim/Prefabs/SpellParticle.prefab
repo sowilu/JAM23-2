@@ -222,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magicEffect: {fileID: 0}
   chanceOfSuccess: 0.6
-  speed: 10
+  speed: 15
 --- !u!54 &2631285168562721071
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,5 +237,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 84
   m_CollisionDetection: 0
