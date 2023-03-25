@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,11 @@ public class AttackBase : MonoBehaviour
     public float coolDown;
     public bool canAttack = true;
 
+    public void StartAutoAttack()
+    {
+        InvokeRepeating(nameof(AttackAction), 0, coolDown);
+    }
+
     public void Attack()
     {
         if (canAttack)
@@ -15,7 +21,7 @@ public class AttackBase : MonoBehaviour
             canAttack = false;
             AttackAction();
             
-            Invoke(nameof(CooledDown), coolDown);
+            //Invoke(nameof(CooledDown), coolDown);
         }
     }
 

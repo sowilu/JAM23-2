@@ -107,6 +107,8 @@ public class Mutator : MonoBehaviour
                     Player.inst.specialAttack = attack as SpecialAttack;
                 }
             }
+            
+            attack.StartAutoAttack();
         }
     }
 
