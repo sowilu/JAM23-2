@@ -24,20 +24,11 @@ public class MutationTest : MonoBehaviour
             {
                 //get item component
                 var item = other.gameObject.GetComponent<Item>();
-                ApplyStats(item);
+                Mutator.inst.Mutate(item);
                 
                 Destroy(other.gameObject);
             }
     }
 
-
-    void ApplyStats(Item item)
-    {
-        //check mutation type
-        if (item.mutation == Mutation.Health)
-        {
-            //mutate health
-            Mutator.inst.Mutate(item.hpBoost, item.maxHpBoost);
-        }
-    }
+    
 }

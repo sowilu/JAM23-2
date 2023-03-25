@@ -70,6 +70,10 @@ public class ItemPickup : MonoBehaviour
 
     Transform FindNearest()
     {
+        //remove all items that are null
+        itemsInRange.RemoveAll(item => item == null);
+        
+        
         Transform nearestItem = null;
         float nearestDistance = float.MaxValue;
         foreach (var item in itemsInRange)
@@ -83,7 +87,7 @@ public class ItemPickup : MonoBehaviour
         }
         
         //if nearest item is too far
-        if (nearestDistance > nearestItem.GetComponent<SphereCollider>().radius)
+        if (nearestItem == null || nearestDistance > nearestItem.GetComponent<SphereCollider>().radius)
         {
             itemsInRange.Remove(nearestItem);
             return null;

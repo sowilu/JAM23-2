@@ -18,6 +18,12 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         rb.velocity = targetDir * speed;
+        
+        //if player isnt rotated towards targetDir, rotate towards it
+        if (Vector3.Angle(transform.forward, targetDir) > 1)
+        {
+            transform.forward = Vector3.Lerp(transform.forward, targetDir, 0.1f);
+        }
     }
 
     public void Move(Vector2 direction)
