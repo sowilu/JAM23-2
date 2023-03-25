@@ -27,7 +27,7 @@ public class SpellParticle : MonoBehaviour
             //ensure that after one bounce off it will work next time
             if(Random.Range(0f, 1f) < chanceOfSuccess && bounces == 0 || bounces == 1)
             {
-                print(collision.gameObject.name);
+                //print(collision.gameObject.name);
                 Mutator.inst.Mutate(collision.gameObject.GetComponent<Spell>());
                 
                 if(magicEffect != null)

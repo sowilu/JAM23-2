@@ -37,6 +37,7 @@ public class PetMoodUI : MonoBehaviour
         yield return new WaitForSeconds(duration);
         
         textBox.gameObject.SetActive(false);
+        textBox.text = "";
     }
 
 }

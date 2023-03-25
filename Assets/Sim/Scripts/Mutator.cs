@@ -43,6 +43,8 @@ public class Mutator : MonoBehaviour
             {
                 Mutate(spell.meleeCooldownBoost, spell.rangeCooldownBoost, spell.specialCooldownBoost);
             }
+            
+            onMutate.Invoke($"Master, I have amassed {spell.description}");
         //}
         //catch(Exception){}
     }
@@ -50,9 +52,15 @@ public class Mutator : MonoBehaviour
     public void Mutate(float spellCooldownBoost = 0,float meleeCooldownBoost = 0, float rangeCooldownBoost = 0, float specialCooldownBoost = 0)
     {
         Player.inst.GetComponent<Wand>().coolDown += spellCooldownBoost;
-        Player.inst.meleeAttack.coolDown += meleeCooldownBoost;
-        Player.inst.rangeAttack.coolDown += rangeCooldownBoost;
-        Player.inst.specialAttack.coolDown += specialCooldownBoost;
+        
+        if(Player.inst.meleeAttack != null)
+            Player.inst.meleeAttack.coolDown += meleeCooldownBoost;
+        
+        if(Player.inst.rangeAttack != null)
+            Player.inst.rangeAttack.coolDown += rangeCooldownBoost;
+        
+        if(Player.inst.specialAttack != null)
+            Player.inst.specialAttack.coolDown += specialCooldownBoost;
     }
 
     public void Mutate(GameObject prefab, BodyPartType type)
@@ -65,18 +73,15 @@ public class Mutator : MonoBehaviour
             foreach (Transform child in bodyPart.position)
             {
                 //if child is the same as prefab activate it
-                if (child.gameObject.name.Contains(prefab.name))
+                if (child.gameObject.name.Contains(prefab.name) || name.Contains(child.gameObject.name))
                 {
-                    child.gameObject.SetActive(true);
                     containsPart = true;
-                    onMutate.Invoke($"I don't need any more {prefab.name}");
                     break;
                 }
                 else
                 {
-                    child.gameObject.SetActive(false);
+                    Destroy(child.gameObject);
                 }
-                
             }
         }
 
@@ -88,7 +93,7 @@ public class Mutator : MonoBehaviour
 
             if (attack != null)
             {
-                //find out if its melee range or special and add it to players refference
+                //find out if its melee range or special and add it to players reference
                 if (attack is MeleeAttack)
                 {
                     Player.inst.meleeAttack = attack as MeleeAttack;
@@ -102,7 +107,6 @@ public class Mutator : MonoBehaviour
                     Player.inst.specialAttack = attack as SpecialAttack;
                 }
             }
-            onMutate.Invoke($"I've grown {prefab.name}");
         }
     }
 
@@ -112,28 +116,12 @@ public class Mutator : MonoBehaviour
     {
         Player.inst.health.maxHp += maxHp;
         Player.inst.health.HP += hp;
-
-        var message = "";
-        if (maxHp > 0)
-            message += "I am feeling stronger";
-        if(hp > 0)
-            message += " I am feeling healthier";
-        
-        onMutate.Invoke(message);
     }
     
     public void Mutate(float speed = 0)
     {
         Player.inst.movement.speed += speed;
 
-        var message = "";
-        if (speed > 0)
-            message += "I've become faster";
-        if(speed < 0)
-            message += "I've become slower";
-
-
         if (Player.inst.movement.speed > 8) Player.inst.movement.speed = 8;
-        onMutate.Invoke(message);
     }
 }

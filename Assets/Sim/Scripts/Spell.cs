@@ -16,6 +16,7 @@ public enum Mutation
 public enum BodyPartType
 {
     Head,
+    Hands,
     Body,
     Legs,
     Tail

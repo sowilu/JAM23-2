@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,15 @@ public class SinBasedAnimation : MonoBehaviour
     public Vector3 mainDirection;
 
     public float angle = 90;
-    void Update()
+
+    private Vector3 startPos;
+
+    private void Start()
+    {
+        startPos = transform.position;
+    }
+
+    void LateUpdate()
     {
         if (rotate)
         {
@@ -25,7 +34,10 @@ public class SinBasedAnimation : MonoBehaviour
 
         if (move)
         {
-            transform.position += mainDirection * Mathf.Sin(Time.time * speed) * angle;
+            transform.position = new Vector3(
+                transform.position.x, 
+                startPos.y + (mainDirection * Mathf.Sin(Time.time * speed) * angle).y,
+                transform.position.z);
         }
     }
 }
