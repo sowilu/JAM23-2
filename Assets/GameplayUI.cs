@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameplayUI : MonoBehaviour
+public class GameplayUI : UnitySingleton<GameplayUI>
 {
     public TMP_Text scoreText;
     public TMP_Text highScoreText;

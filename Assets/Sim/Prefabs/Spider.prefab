@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 5212286017994312657}
   - component: {fileID: 5212286017994312662}
   - component: {fileID: 5212286017994312660}
+  - component: {fileID: 156822692964526867}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Enemy
@@ -234,6 +235,8 @@ MonoBehaviour:
   speed: 5
   target: {fileID: 0}
   cooldown: 2
+  health: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!195 &5212286017994312662
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -278,7 +281,25 @@ MonoBehaviour:
   meleeCooldownBoost: 0
   rangeCooldownBoost: 0
   specialCooldownBoost: 0
-  description: Daddy long leg's best feature
+  voiceLine: {fileID: 8300000, guid: 4cccd69d6f0ba274b97961ae5409ff66, type: 3}
+  description: Master, Master I have the spider legs! How cool is that?
+--- !u!114 &156822692964526867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4941763075509637622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57525d6f489ced4f9cbb8c178a580a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  hp: 0
+  deathEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
+  autoDestroy: 1
 --- !u!1 &4991078183835320669
 GameObject:
   m_ObjectHideFlags: 0

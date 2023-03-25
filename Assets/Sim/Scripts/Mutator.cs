@@ -44,7 +44,8 @@ public class Mutator : MonoBehaviour
                 Mutate(spell.meleeCooldownBoost, spell.rangeCooldownBoost, spell.specialCooldownBoost);
             }
             
-            onMutate.Invoke($"Master, I have amassed {spell.description}");
+            Audio.Play(spell.voiceLine);
+            onMutate.Invoke(spell.description);
         //}
         //catch(Exception){}
     }
@@ -108,9 +109,10 @@ public class Mutator : MonoBehaviour
                 {
                     Player.inst.specialAttack = attack as SpecialAttack;
                 }
+                 attack.StartAutoAttack();
             }
             
-            attack.StartAutoAttack();
+           
         }
     }
 

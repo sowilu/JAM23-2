@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,6 +16,7 @@ public class SpellParticle : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,6 +39,7 @@ public class SpellParticle : MonoBehaviour
             }
             else
             {
+
                 bounces++;
             }
         }

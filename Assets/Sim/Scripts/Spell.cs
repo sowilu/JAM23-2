@@ -52,6 +52,6 @@ public class Spell : MonoBehaviour
     [ShowIf("mutation", Mutation.Attack)] 
     public float specialCooldownBoost;
     
-    
+    public AudioClip voiceLine;
     public string description;
 }

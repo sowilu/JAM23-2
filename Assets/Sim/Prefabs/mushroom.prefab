@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665888653050376783}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.014233, y: -1.8636928, z: -0.99695015}
   m_LocalScale: {x: 1.98, y: 1.98, z: 1.98}
   m_ConstrainProportionsScale: 1
@@ -121,4 +121,5 @@ MonoBehaviour:
   meleeCooldownBoost: 0
   rangeCooldownBoost: 0
   specialCooldownBoost: 0
-  description: 
+  voiceLine: {fileID: 8300000, guid: 3c525d6a105cfaa49a4b043a31fa73f8, type: 3}
+  description: Gosh darn it, I aint no shroom, unless you say so, Master

@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1856670338}
   - component: {fileID: 1856670339}
   - component: {fileID: 1856670340}
+  - component: {fileID: 1978303835158443571}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -224,7 +225,8 @@ MonoBehaviour:
   meleeCooldownBoost: 0
   rangeCooldownBoost: 0
   specialCooldownBoost: 0
-  description: 
+  voiceLine: {fileID: 8300000, guid: ccdf1a506ed62224b8dab35369883651, type: 3}
+  description: What in JESUS blessed be thy name is this shi...
 --- !u!114 &1856670339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +243,8 @@ MonoBehaviour:
   speed: 5
   target: {fileID: 0}
   cooldown: 3
+  health: {fileID: 0}
+  agent: {fileID: 0}
 --- !u!195 &1856670340
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -263,6 +267,23 @@ NavMeshAgent:
   m_BaseOffset: 0.6950019
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1978303835158443571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166845637767231157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57525d6f489ced4f9cbb8c178a580a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  hp: 0
+  deathEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
+  autoDestroy: 1
 --- !u!1001 &5957401253305787177
 PrefabInstance:
   m_ObjectHideFlags: 0
