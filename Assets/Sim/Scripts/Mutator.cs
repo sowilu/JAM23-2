@@ -20,7 +20,7 @@ public class Mutator : UnitySingleton<Mutator>
         }
     }
     
-    public void Mutate(Spell spell)
+    public async void Mutate(Spell spell)
     {
         if (spell == null) return;
 
@@ -43,8 +43,11 @@ public class Mutator : UnitySingleton<Mutator>
                 Mutate(spell.meleeCooldownBoost, spell.rangeCooldownBoost, spell.specialCooldownBoost);
             }
             
-            Audio.Play(spell.voiceLine);
             onMutate.Invoke(spell.description);
+            
+            await new WaitForSecondsRealtime(1.65f);
+            Audio.Play(spell.voiceLine);
+            
         //}
         //catch(Exception){}
     }

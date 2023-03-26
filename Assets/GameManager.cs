@@ -19,6 +19,7 @@ public class GameManager : UnitySingleton<GameManager>
     public GameObject slowMusic;
     public GameObject fastMusic;
     
+    public Spawner spawner;
     
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class GameManager : UnitySingleton<GameManager>
         
         onGameStart.AddListener(() =>
         {
+            spawner.gameObject.SetActive(true);
             titleScreenCanvas.SetActive(false);
             gameplayCanvas.SetActive(true);
             GameplayUI.Instance.highScoreText.text = highScore.ToString();
@@ -39,6 +41,7 @@ public class GameManager : UnitySingleton<GameManager>
         
         onGameEnd.AddListener(() =>
         {
+            spawner.gameObject.SetActive(false);
             gameplayCanvas.SetActive(false);
             
             slowMusic.SetActive(true);

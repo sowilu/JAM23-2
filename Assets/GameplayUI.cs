@@ -36,7 +36,7 @@ public class GameplayUI : UnitySingleton<GameplayUI>
     private void LateUpdate()
     {
                     
-        cooldownImage.fillAmount = wand.cooldownLeft / wand.coolDown;
+        cooldownImage.fillAmount = 1 - wand.cooldownLeft / wand.coolDown;
     }
 
 

@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
         {
             // jumpy movement animation
             // if on grond, then jump
-            var grounded = Physics.Raycast(transform.position, Vector3.down, 0.1f);
+            var grounded = Physics.Raycast(transform.position, Vector3.down, 1f);
             if (grounded)
             {
                 rb.velocity += Vector3.up * gravity;

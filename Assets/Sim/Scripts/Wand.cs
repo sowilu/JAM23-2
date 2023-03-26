@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wand : MonoBehaviour
@@ -12,24 +9,18 @@ public class Wand : MonoBehaviour
     public float cooldownLeft = 0;
 
     public GameObject spellParticle;
-    private bool canCast = true;
 
     private void Update()
     {
         cooldownLeft -= Time.deltaTime;
-        
-        if (cooldownLeft <= 0)
-        {
-            canCast = true;
-        }
     }
 
 
     public void Cast()
     {
-        if (canCast)
+        if (cooldownLeft <= 0)
         {
-            canCast = false;
+            cooldownLeft = coolDown;
             
             if(castSound != null)
                 Audio.Play(castSound);

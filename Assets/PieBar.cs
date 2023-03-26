@@ -1,25 +1,40 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteAlways]
+
 public class PieBar : MonoBehaviour
 {
-    /*[SerializeField] Image image;
-    [Range(0f,1f)]public float value;
-    bool isFilled;
+    [SerializeField] Image image;
+    private bool hasFilled;
+    public AudioClip fillSound;
 
-    public Sound filledSound;
-    
+    private void Awake()
+    {
+        image = GetComponent<Image>();
+    }
 
     private void Update()
     {
-        if (!image) return;
+        image.fillAmount = Mathf.Clamp01(image.fillAmount);
         
-        
-        image.fillAmount = value;
-        if (value >= 1f)
+        if(image.fillAmount >= 1)
         {
-            Audio.Play(filledSound);
+            if(!hasFilled)
+            {
+                hasFilled = true;
+                Pop();
+            }
         }
-    }*/
+        else
+        {
+            hasFilled = false;
+        }
+    }
+    
+    private void Pop()
+    {
+        Audio.Play(fillSound);
+        //transform.localScale = Vector3.one * 1.2f;
+    }
 }

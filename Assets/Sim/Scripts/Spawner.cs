@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class Spawner : MonoBehaviour
 
     private List<Transform> spawnPoints;
 
-    private void Awake()
+    public void Init()
     {
         // find with tag
         var gos = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -22,13 +23,13 @@ public class Spawner : MonoBehaviour
         {
             spawnPoints.Add(go.transform);
         }
+        SpawnRoutine();
     }
 
 
-    void Start()
+    private void Start()
     {
-        SpawnRoutine();
-        
+        Init();
     }
 
     private void Update()

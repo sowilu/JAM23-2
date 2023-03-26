@@ -10,17 +10,32 @@ public class SpellParticle : MonoBehaviour
     public float chanceOfSuccess = 0.6f;
     private int bounces = 0;
     public float speed = 10;
+    public float ttl = 10;
 
     private Rigidbody rb;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
+
+    }
+
+    private void Update()
+    {
+        rb.velocity = rb.velocity.normalized * speed;
         
+        ttl -= Time.deltaTime;
+        if (ttl <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        speed++;
+        
+        
         if(bounceEffect != null)
             Instantiate(bounceEffect, transform.position, transform.rotation);
         
