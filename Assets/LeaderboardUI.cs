@@ -10,7 +10,13 @@ public class LeaderboardUI : UnitySingleton<Leaderboard>
 
     public void Populate(List<string> entries)
     {
-        StartCoroutine(PopulateCoroutine(entries));
+        //print(string.Join(", ", entries));  
+        //StartCoroutine(PopulateCoroutine(entries));
+        foreach (var entry in entries)
+        {
+            var text = Instantiate(texPrefab, verticalLayout);
+            text.text = entry;
+        }
     }
 
     IEnumerator PopulateCoroutine(List<string> entries)

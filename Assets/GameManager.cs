@@ -1,9 +1,12 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class GameManager : UnitySingleton<GameManager>
 {
+    public int randomID;
     public static int score;
     public static int highScore;
 
@@ -20,37 +23,15 @@ public class GameManager : UnitySingleton<GameManager>
     public GameObject fastMusic;
     
     public Spawner spawner;
-    
+
+    public bool gameEnd = false;
     private void Awake()
     {
         Load();
         
         InvokeRepeating(nameof(Save), saveInterval, saveInterval);
-        
-        onGameStart.AddListener(() =>
-        {
-            spawner.gameObject.SetActive(true);
-            titleScreenCanvas.SetActive(false);
-            gameplayCanvas.SetActive(true);
-            GameplayUI.Instance.highScoreText.text = highScore.ToString();
-            CameraFollow.Instance.zoom = 0;
-            
-            slowMusic.SetActive(false);
-            fastMusic.SetActive(true);
-        });
-        
-        onGameEnd.AddListener(() =>
-        {
-            spawner.gameObject.SetActive(false);
-            gameplayCanvas.SetActive(false);
-            
-            slowMusic.SetActive(true);
-            fastMusic.SetActive(false);
-        });
     }
     
-    
-
     void Save()
     {
         PlayerPrefs.SetInt("highScore", highScore);
@@ -80,9 +61,10 @@ public class GameManager : UnitySingleton<GameManager>
 
     private void Start()
     {
+        randomID = Random.Range(0, 100);
         Player.inst.health.onDie.AddListener(() =>
         {
-            ShowLeaderboard();
+            //ShowLeaderboard();
             onGameEnd.Invoke();
         });
         
@@ -97,6 +79,32 @@ public class GameManager : UnitySingleton<GameManager>
             
         }); 
         
+        onGameStart.AddListener(() =>
+        {
+            spawner.gameObject.SetActive(true);
+            titleScreenCanvas.SetActive(false);
+            gameplayCanvas.SetActive(true);
+            GameplayUI.Instance.highScoreText.text = highScore.ToString();
+            CameraFollow.Instance.zoom = 0;
+            
+            slowMusic.SetActive(false);
+            fastMusic.SetActive(true);
+        });
+        
+        onGameEnd.AddListener(() =>
+        {
+            gameEnd = true;
+            Player.inst.gameObject.SetActive(false);
+            
+            Enemy.disableAll = true;
+            spawner.gameObject.SetActive(false);
+            //gameplayCanvas.SetActive(false);
+            
+            slowMusic.SetActive(true);
+            fastMusic.SetActive(false);
+            
+            ShowLeaderboard();
+        });
         
         Mutator.inst.onMutate.AddListener(MutateZoomRoutine);
     }
@@ -117,8 +125,15 @@ public class GameManager : UnitySingleton<GameManager>
     public void ShowLeaderboard()
     {
         if(GameplayUI.Instance.leaderboardUI.gameObject.activeSelf) return;
+
+        var name = $"Hill Billy {randomID}";
+        var scores = Leaderboard.inst.Add(name, score);
         
-        var scores = Leaderboard.inst.Add("Hill Billy", score);
+        GameplayUI.Instance.scoreText.text = score.ToString();
+        if (!scores.Contains($"{name}-{score}"))
+        {
+            scores.Add($"{name}-{score}");
+        }
         GameplayUI.Instance.leaderboardUI.gameObject.SetActive(true);
         GameplayUI.Instance.leaderboardUI.Populate(scores);
     }
@@ -130,5 +145,17 @@ public class GameManager : UnitySingleton<GameManager>
     public static void Resume()
     {
         Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        //if game end listen to any input and reload scene
+        if (gameEnd)
+        {
+            if (Input.anyKeyDown)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
+        }
     }
 }

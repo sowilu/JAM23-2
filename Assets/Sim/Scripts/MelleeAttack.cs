@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MelleeAttack : MonoBehaviour
@@ -11,10 +12,18 @@ public class MelleeAttack : MonoBehaviour
 
     async void AttackRoutine()
     {
-        while (true)
+        while (!GameManager.Instance.gameEnd)
         {
             await new WaitForSeconds(attackInterval);
-            Attack();
+
+            try
+            {
+                Attack();
+            }
+            catch (Exception)
+            {
+            }
+
         }
     }
 

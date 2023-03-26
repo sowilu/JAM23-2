@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Health : MonoBehaviour
 {
@@ -38,8 +40,12 @@ public class Health : MonoBehaviour
             var damage = hp - value;
             onDamage.Invoke(damage);
             onAnyDamage.Invoke(damage);
-            if (tweenOnDamage) StartCoroutine(TweenRoutine());
-            if (damageEffect) Instantiate(damageEffect, transform.position, transform.rotation);
+            try
+            {
+                if (gameObject.activeSelf && tweenOnDamage) StartCoroutine(TweenRoutine());
+                if (damageEffect) Instantiate(damageEffect, transform.position, transform.rotation);
+            }
+            catch(Exception){}
             if (hp <= 0)
             {
                 Die();

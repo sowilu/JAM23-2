@@ -20,7 +20,7 @@ public class Leaderboard : MonoBehaviour
     {
         //send http get request to http://dreamlo.com/lb/[LBPRIVATE]/add-pipe/Carmine/100
         // Construct the URL for the HTTP request
-        string url = $"http://dreamlo.com/lb/Rp0iHeFORkKgqd7iGbDuXQMHPAE7QFR0qSQCfCZsEmsQ/add-pipe/{name}/{score}";
+        string url = $"http://dreamlo.com/lb/XNfXPB40902jSsE_jakykwDohhPbtThka0sT3i5QaPXg/add-pipe/{name}/{score}";
 
         // Send the HTTP request
         var www = new WWW(url);
@@ -30,13 +30,11 @@ public class Leaderboard : MonoBehaviour
         var board = new List<string>();
         
         //print(www.text);;
-        
-        foreach (var line in www.text.Split(Environment.NewLine))
+        foreach (var line in www.text.Split("\n"))
         {
             //print(string.Join(',', www.text.Split(Environment.NewLine).ToArray()));
             if (line.Contains('|'))
             {
-                
                 var scores = line.Split('|');
                 board.Add($"{scores[0]}-{scores[1]}");
             }
@@ -50,7 +48,7 @@ public class Leaderboard : MonoBehaviour
 
     public void Clear()
     {
-        string url = $"http://dreamlo.com/lb/Rp0iHeFORkKgqd7iGbDuXQMHPAE7QFR0qSQCfCZsEmsQ/clear";
+        string url = $"http://dreamlo.com/lb/XNfXPB40902jSsE_jakykwDohhPbtThka0sT3i5QaPXg/clear";
 
         // Send the HTTP request
         var www = new WWW(url);

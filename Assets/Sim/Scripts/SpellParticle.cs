@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class SpellParticle : MonoBehaviour
 {
+    public AudioClip bounce;
     public GameObject magicEffect;
     public GameObject bounceEffect;
     
@@ -33,6 +34,9 @@ public class SpellParticle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(bounce != null)
+            Audio.Play(bounce);
+        
         speed++;
         
         

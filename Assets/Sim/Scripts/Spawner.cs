@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
 
     async void SpawnRoutine()
     {
-        while (true)
+        while (!GameManager.Instance.gameEnd)
         {
             Spawn();
             await new WaitForSeconds(1 / spawnRate);
@@ -50,11 +50,36 @@ public class Spawner : MonoBehaviour
     
     void Spawn()
     {
-        var pos = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
-        var prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+        //remove null spawnd points
+        spawnPoints.RemoveAll(x => x == null);
+        if(spawnPoints.Count == 0)
+        {
+            var gos = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            spawnPoints = new List<Transform>();
+            foreach (var go in gos)
+            {
+                spawnPoints.Add(go.transform);
+            }
+        }
 
-        var obj = Instantiate(prefab, pos, transform.rotation);
-        obj.target = Player.inst.transform;
+        try
+        {
+            var pos = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
+                    var prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+            
+                    var obj = Instantiate(prefab, pos, transform.rotation);
+                    
+                    if(Player.inst != null)
+                        obj.target = Player.inst.transform;
+        }
+        catch (Exception e)
+        {
+            print("Filed to spawn:" + e.Message);
+            
+            //kill all asynctasks
+            
+        }
+        
 
     }
 }

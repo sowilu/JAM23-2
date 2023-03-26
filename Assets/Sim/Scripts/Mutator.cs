@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -77,16 +78,24 @@ public class Mutator : UnitySingleton<Mutator>
             //disable all children
             foreach (Transform child in bodyPart.position)
             {
+                if(child == null) continue;
                 //if child is the same as prefab activate it
-                if (child.gameObject.name.Contains(prefab.name) || name.Contains(child.gameObject.name))
+                try
                 {
-                    containsPart = true;
-                    break;
+                    if (child.gameObject.name.Contains(prefab.name) || name.Contains(child.gameObject.name))
+                    {
+                        containsPart = true;
+                        break;
+                    }
+                    else
+                    {
+                        Destroy(child.gameObject);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    Destroy(child.gameObject);
                 }
+
             }
         }
 
@@ -99,6 +108,10 @@ public class Mutator : UnitySingleton<Mutator>
 
             if(attack != null)
                 attack.StartAttack();
+
+            var tower = newPart.GetComponent<Tower>();
+            if (tower != null)
+                tower.enabled = true;
         }
     }
 

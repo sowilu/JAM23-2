@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    public static bool disableAll = false;
     public int damage = 5;
     public float speed = 5;
     public Transform target;
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        disableAll = false;
         health = GetComponent<Health>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -30,15 +32,26 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(target != null)
+        if (disableAll)
+        {
+            gameObject.SetActive(false);
+            target = null;
+        }
+        
+        if(gameObject.activeSelf && target != null)
         {
             agent.SetDestination(target.position);
         
             //if player at stopping distance
-            if (agent.remainingDistance <= agent.stoppingDistance && canAttack)
+            if (Vector3.Distance(transform.position, target.position) <= agent.stoppingDistance && canAttack)
             {
                 //attack
                 Player.inst.health.HP -= damage;
+                
+                if(Player.inst.health.HP <= 0)
+                {
+                    target = null;
+                }
 
                 canAttack = false;
                 Invoke(nameof(CooledDown), cooldown);

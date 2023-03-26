@@ -36,6 +36,7 @@ public class CameraFollow : UnitySingleton<CameraFollow>
     {
         if(cam == null)return;
         
+        //print("Zooming");
         //orth size is the zoom
         targetZoom = Mathf.Lerp(minZoom, maxZoom, zoom);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, 1- zoomSmoothness);

@@ -8,9 +8,11 @@ public class StartWand : MonoBehaviour
     {
         if( collision.gameObject.CompareTag("Player"))
         {
-            GameManager.onGameStart.Invoke();
             Instantiate( particles, transform.position, Quaternion.identity );
             Audio.Play(sound);
+            Player.inst.gameObject.GetComponent<Wand>().enabled = true;
+            GameManager.onGameStart.Invoke();
+            
             Destroy(gameObject);
         }
     }

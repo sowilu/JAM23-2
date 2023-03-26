@@ -18,6 +18,8 @@ public class Wand : MonoBehaviour
 
     public void Cast()
     {
+        if (!enabled) return;
+        
         if (cooldownLeft <= 0)
         {
             cooldownLeft = coolDown;
