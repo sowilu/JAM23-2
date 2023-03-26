@@ -33,7 +33,7 @@ public class Leaderboard : MonoBehaviour
         foreach (var line in www.text.Split("\n"))
         {
             //print(string.Join(',', www.text.Split(Environment.NewLine).ToArray()));
-            if (line.Contains('|'))
+            if (line.Contains('|') && board.Count < 10)
             {
                 var scores = line.Split('|');
                 board.Add($"{scores[0]}-{scores[1]}");

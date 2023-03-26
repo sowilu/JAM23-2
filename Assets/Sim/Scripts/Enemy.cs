@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float speed = 5;
     public Transform target;
     public float cooldown = 3;
-    
+
     public Health health;
     public NavMeshAgent agent;
     bool canAttack = true;
@@ -37,18 +37,18 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
             target = null;
         }
-        
-        if(gameObject.activeSelf && target != null)
+
+        if (gameObject.activeSelf && target != null)
         {
             agent.SetDestination(target.position);
-        
+
             //if player at stopping distance
             if (Vector3.Distance(transform.position, target.position) <= agent.stoppingDistance && canAttack)
             {
                 //attack
                 Player.inst.health.HP -= damage;
-                
-                if(Player.inst.health.HP <= 0)
+
+                if (Player.inst.health.HP <= 0)
                 {
                     target = null;
                 }
@@ -57,12 +57,11 @@ public class Enemy : MonoBehaviour
                 Invoke(nameof(CooledDown), cooldown);
             }
         }
+        
     }
-    
+
     void CooledDown()
     {
         canAttack = true;
     }
-    
- 
 }

@@ -112,6 +112,12 @@ public class Mutator : UnitySingleton<Mutator>
             var tower = newPart.GetComponent<Tower>();
             if (tower != null)
                 tower.enabled = true;
+
+            var item = GetComponent<Item>();
+            if (item)
+            {
+                item.Activate();
+            }
         }
     }
 

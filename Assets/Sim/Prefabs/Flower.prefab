@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4324766907307451209}
   - component: {fileID: 2008710846338570115}
   - component: {fileID: 6136686383485859010}
-  - component: {fileID: 6961809109900688217}
   - component: {fileID: 3837122202101255945}
+  - component: {fileID: 991608253}
+  - component: {fileID: 991608260}
   m_Layer: 0
   m_Name: Flower
   m_TagString: Enemy
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63230368724268630}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0763062, w: 0.99708444}
+  m_LocalRotation: {x: 0, y: 0, z: -0.07631001, w: 0.9970842}
   m_LocalPosition: {x: 16.77, y: 0.56, z: 4.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -103,19 +104,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.21400002, y: 0.335, z: -0.029000001}
   m_TimeToStationary: 0.5
---- !u!65 &6961809109900688217
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63230368724268630}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1802164, y: 2.0036254, z: 1.583611}
-  m_Center: {x: 0.21427085, y: 0.33527818, z: -0.02918449}
 --- !u!114 &3837122202101255945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +126,41 @@ MonoBehaviour:
   meleeCooldownBoost: 0
   rangeCooldownBoost: 0
   specialCooldownBoost: 0
-  voiceLine: {fileID: 8300000, guid: 5f79961fc6ebc9a42900ff06a4d9ae82, type: 3}
-  description: 
+  voiceLine: {fileID: 8300000, guid: 6c4294e103d9c3f4abb87be911889b27, type: 3}
+  description: Flower... Flower? Do I look like a lady to you?
+--- !u!114 &991608253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63230368724268630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f579d2856c409244a3df38099a9cdbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 874b7686081fe6748b6398c3c353cae4, type: 3}
+  range: 5
+  targetTag: Player
+  damage: 10
+  coolDown: 5
+  bullet: {fileID: 3285892094833569628, guid: e94f2f8468c57524cbb1172276aabb75, type: 3}
+  firePoint: {fileID: 3837122203421081309}
+--- !u!136 &991608260
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63230368724268630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7918055
+  m_Height: 4.1216354
+  m_Direction: 1
+  m_Center: {x: 0.21427083, y: 1.3942821, z: -0.02918446}
 --- !u!1 &3837122203421081308
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3837122203421081308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 0.85, z: 0}
+  m_LocalPosition: {x: 0.11, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864249006478670167, guid: 1aea4dd2bbb71f5458fff7a905fc17ef, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4533789278649541613, guid: 1aea4dd2bbb71f5458fff7a905fc17ef, type: 3}
       propertyPath: m_RootOrder
@@ -230,7 +251,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -8.753
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6187210108934026328, guid: 1aea4dd2bbb71f5458fff7a905fc17ef, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1aea4dd2bbb71f5458fff7a905fc17ef, type: 3}
 --- !u!1 &63230368826687769 stripped
 GameObject:
@@ -249,10 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f579d2856c409244a3df38099a9cdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  sound: {fileID: 8300000, guid: 874b7686081fe6748b6398c3c353cae4, type: 3}
+  range: 10
   targetTag: Enemy
   damage: 10
-  coolDown: 5
+  coolDown: 0.7
   bullet: {fileID: 3285892094833569628, guid: e94f2f8468c57524cbb1172276aabb75, type: 3}
   firePoint: {fileID: 3837122203421081309}
 --- !u!4 &840892215954693027 stripped

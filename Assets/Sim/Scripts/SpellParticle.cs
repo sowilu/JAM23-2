@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class SpellParticle : MonoBehaviour
 {
-    public AudioClip bounce;
+    public Sound bounce;
     public GameObject magicEffect;
     public GameObject bounceEffect;
     
@@ -55,7 +55,7 @@ public class SpellParticle : MonoBehaviour
                     Instantiate(magicEffect, transform.position, Quaternion.identity);
                 
                 Destroy(collision.gameObject);
-                Player.inst.transform.position = collision.transform.position;
+                if(Player.inst != null)Player.inst.transform.position = collision.transform.position;
                 
                 Destroy(gameObject);
             }

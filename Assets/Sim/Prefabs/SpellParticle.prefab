@@ -5167,7 +5167,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.24
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6412120030053333996
 MonoBehaviour:
@@ -5181,7 +5181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4dc3b508b89a244a10e50fa24c4e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounce: {fileID: 8300000, guid: 9a5411cdd86fdf943b59e7581d056b86, type: 3}
+  bounce: {fileID: 11400000, guid: 69f8cea742d09ea4993f6d3def854bbc, type: 2}
   magicEffect: {fileID: 3465245284972101010, guid: 9391363693116d2499b5bcedcb47da2d, type: 3}
   bounceEffect: {fileID: 731734051468843790, guid: a22fa7c345169074b96fd4b2f525c955, type: 3}
   chanceOfSuccess: 0.7

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2749274135621155035}
   - component: {fileID: 2749274135621155030}
   - component: {fileID: 2749274135621155031}
-  - component: {fileID: 2749274135621155029}
   - component: {fileID: 2749274135621155034}
   - component: {fileID: 2749274135621155025}
   - component: {fileID: 2499136663075542568}
+  - component: {fileID: 3497930466387880648}
   m_Layer: 0
   m_Name: Sword Enemy
   m_TagString: Enemy
@@ -49,10 +49,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -73,25 +73,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46398f78bc8114641b95d2722b4ca8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  speed: 5
+  damage: 20
+  speed: 3
   target: {fileID: 0}
-  cooldown: 3
+  cooldown: 1
   health: {fileID: 0}
   agent: {fileID: 0}
---- !u!65 &2749274135621155029
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749274135621155032}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5706234, y: 2.2835364, z: 0.72926235}
-  m_Center: {x: -0.2146883, y: 0.6417682, z: 0.13536882}
 --- !u!114 &2749274135621155034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyPartType: 1
   bodyPartPrefab: {fileID: 3091170922323839338}
-  mutation: 2
+  mutation: 0
   maxHpBoost: 0
   hpBoost: 0
   speedBoost: 0
@@ -147,10 +134,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   hp: 0
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
   deathEffect: {fileID: 5452201393596370828, guid: e855b506473134948a2120fbda23aba3, type: 3}
   damageEffect: {fileID: 8356677573697912285, guid: 75f6e5b5220e5db4c9773e2c06ef0ac3, type: 3}
+  bloodPuddle: {fileID: 4730808177302071622, guid: 485bfa3e8eae0794bae46000a6d2e90e, type: 3}
   tweenOnDamage: 1
   autoDestroy: 1
+  bloodPoolOnDamage: 0
+--- !u!136 &3497930466387880648
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749274135621155032}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.62
+  m_Height: 2.7121747
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.73608744, z: 0}
 --- !u!1001 &2749274135449104397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae75eb0c495402047a17377beefcfeed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.252
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae75eb0c495402047a17377beefcfeed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -300,3 +309,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ae75eb0c495402047a17377beefcfeed, type: 3}
   m_PrefabInstance: {fileID: 2749274135710151739}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2749274137309167023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091170922323839338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac478b5f7c4962a4e9cac308ba994ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackInterval: 0.55
+  damage: 20
+  attackSound: {fileID: 11400000, guid: ad1eb0bdc1c87d344bcdf80c151b2573, type: 2}
+  attackEffect: {fileID: 1914699486411654512, guid: 03cee085e46bbd04799cdc82ba7dd4c0, type: 3}

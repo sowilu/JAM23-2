@@ -24,6 +24,7 @@ public class Health : MonoBehaviour
     public bool tweenOnDamage = true;
 
     public bool autoDestroy;
+    public bool bloodPoolOnDamage;
 
 
     private void Awake()
@@ -40,18 +41,20 @@ public class Health : MonoBehaviour
             var damage = hp - value;
             onDamage.Invoke(damage);
             onAnyDamage.Invoke(damage);
+            if(bloodPoolOnDamage && bloodPuddle!=null) Instantiate(bloodPuddle, transform.position + Vector3.up*0.02f, Quaternion.identity);
             try
             {
                 if (gameObject.activeSelf && tweenOnDamage) StartCoroutine(TweenRoutine());
                 if (damageEffect) Instantiate(damageEffect, transform.position, transform.rotation);
             }
             catch(Exception){}
-            if (hp <= 0)
+            hp = value;
+            if (hp <= 0f)
             {
                 Die();
             }
             
-            hp = value;
+  
             
             if (hp > maxHp)
             {
@@ -79,7 +82,7 @@ public class Health : MonoBehaviour
                 Instantiate(deathEffect, transform.position, transform.rotation);
 
             if (bloodPuddle)
-                Instantiate(bloodPuddle, transform.position, Quaternion.Euler(90, Random.Range(0, 360), 0)).transform.localScale = new Vector3(Random.Range(0.9f, 1.8f), 1, Random.Range(0.9f, 1.8f));
+                Instantiate(bloodPuddle, transform.position + Vector3.up*0.02f, Quaternion.Euler(90, Random.Range(0, 360), 0)).transform.localScale = new Vector3(Random.Range(0.9f, 1.8f), 1, Random.Range(0.9f, 1.8f));
             
             Destroy(gameObject);
         }

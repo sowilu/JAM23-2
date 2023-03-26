@@ -232,9 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  speed: 5
+  speed: 3
   target: {fileID: 0}
-  cooldown: 2
+  cooldown: 1
   health: {fileID: 0}
   agent: {fileID: 0}
 --- !u!195 &5212286017994312662
@@ -250,7 +250,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -295,12 +295,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57525d6f489ced4f9cbb8c178a580a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 20
   hp: 0
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
   deathEffect: {fileID: 5452201393596370828, guid: e855b506473134948a2120fbda23aba3, type: 3}
   damageEffect: {fileID: 8356677573697912285, guid: 75f6e5b5220e5db4c9773e2c06ef0ac3, type: 3}
+  bloodPuddle: {fileID: 0}
   tweenOnDamage: 1
   autoDestroy: 1
+  bloodPoolOnDamage: 0
 --- !u!1 &4991078183835320669
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2041745039660132597}
   - component: {fileID: 3168959493217494864}
   - component: {fileID: 873294357829276570}
-  - component: {fileID: 2008329691703375630}
   - component: {fileID: 2008329691703375631}
+  - component: {fileID: 2879372268741258924}
+  - component: {fileID: 636763445416168944}
   m_Layer: 0
   m_Name: mushroom
   m_TagString: Enemy
@@ -86,19 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2008329691703375630
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665888653050376783}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.62435216, y: 0.69599986, z: 0.7209399}
-  m_Center: {x: -0.000000044703484, y: 0.34799993, z: 0}
 --- !u!114 &2008329691703375631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,3 +111,31 @@ MonoBehaviour:
   specialCooldownBoost: 0
   voiceLine: {fileID: 8300000, guid: 3c525d6a105cfaa49a4b043a31fa73f8, type: 3}
   description: Gosh darn it, I aint no shroom, unless you say so, Master
+--- !u!136 &2879372268741258924
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665888653050376783}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.36046994
+  m_Height: 1.5415121
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7582858, z: 0}
+--- !u!114 &636763445416168944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665888653050376783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a418b85b2af36d14a8a83e8fe9b17f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  gasPrefab: {fileID: 7990584374326902971, guid: 88bd92127b69f254794d962fc3b4ddda, type: 3}

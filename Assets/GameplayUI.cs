@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class GameplayUI : UnitySingleton<GameplayUI>
         Health.onAnyDamage.AddListener((dmg) =>
         {
             scoreText.text = GameManager.score.ToString();
-            highScoreText.text = GameManager.highScore.ToString();
+            highScoreText.text = "best: " +  GameManager.highScore.ToString();
         });
         
         announceTextCanvasGroup.alpha = 0;
@@ -39,24 +40,29 @@ public class GameplayUI : UnitySingleton<GameplayUI>
         cooldownImage.fillAmount = 1 - wand.cooldownLeft / wand.coolDown;
     }
 
+    public void Announce(string text)
+    {
+        StartCoroutine(AnnounceRoutine(text));
+    }
 
-    public async void Announce(string text)
+
+    IEnumerator AnnounceRoutine(string text)
     {
         // fade in
         announceText.text = text;
         for( float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             announceTextCanvasGroup.alpha = t / fadeDuration;
-            await Task.Yield();
+            yield return null;
         }
         
-        await new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration);
         
         // fade out
         for( float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             announceTextCanvasGroup.alpha = 1f - t / fadeDuration;
-            await Task.Yield();
+            yield return null;
         }
         announceTextCanvasGroup.alpha = 0f;
         

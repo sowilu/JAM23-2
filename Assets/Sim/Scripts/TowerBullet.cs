@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
+
 
 public class TowerBullet : MonoBehaviour
 {
     public Transform target;
     public int damage = 15;
     public GameObject dieEffect;
+    public float speed = 20;
     void Update()
     {
         if (target != null)
@@ -16,7 +14,7 @@ public class TowerBullet : MonoBehaviour
             //roatte towards target
             //move towards target
             transform.LookAt(target);
-            transform.Translate(Vector3.forward * Time.deltaTime * 10);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
         }
     }
 

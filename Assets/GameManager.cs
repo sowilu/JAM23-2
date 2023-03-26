@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -84,7 +82,7 @@ public class GameManager : UnitySingleton<GameManager>
             spawner.gameObject.SetActive(true);
             titleScreenCanvas.SetActive(false);
             gameplayCanvas.SetActive(true);
-            GameplayUI.Instance.highScoreText.text = highScore.ToString();
+            GameplayUI.Instance.highScoreText.text =  "best: " +  highScore.ToString();
             CameraFollow.Instance.zoom = 0;
             
             slowMusic.SetActive(false);

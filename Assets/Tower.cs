@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Tower : MonoBehaviour
 {
@@ -29,7 +28,7 @@ public class Tower : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.transform.CompareTag(targetTag))
+            if (collider.transform.CompareTag(targetTag) && collider.GetComponent<Health>())
             {
                 //Debug.Log("Target found");
                 targets.Add(collider.transform);
