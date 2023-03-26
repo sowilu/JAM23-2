@@ -11,11 +11,39 @@ public class GameManager : UnitySingleton<GameManager>
     public static UnityEvent onGameEnd = new();
 
     public float saveInterval = 5f;
+
+    [Header("Canvases")] 
+    public GameObject titleScreenCanvas;
+    public GameObject gameplayCanvas;
+
+    public GameObject slowMusic;
+    public GameObject fastMusic;
+    
+    
     private void Awake()
     {
         Load();
         
         InvokeRepeating(nameof(Save), saveInterval, saveInterval);
+        
+        onGameStart.AddListener(() =>
+        {
+            titleScreenCanvas.SetActive(false);
+            gameplayCanvas.SetActive(true);
+            GameplayUI.Instance.highScoreText.text = highScore.ToString();
+            CameraFollow.Instance.zoom = 0;
+            
+            slowMusic.SetActive(false);
+            fastMusic.SetActive(true);
+        });
+        
+        onGameEnd.AddListener(() =>
+        {
+            gameplayCanvas.SetActive(false);
+            
+            slowMusic.SetActive(true);
+            fastMusic.SetActive(false);
+        });
     }
     
     
@@ -64,7 +92,6 @@ public class GameManager : UnitySingleton<GameManager>
             }
             
             
-            GameplayUI.Instance.scoreText.text = score.ToString();
         }); 
         
         

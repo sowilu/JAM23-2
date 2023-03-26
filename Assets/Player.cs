@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public RangedAttack rangeAttack;
     [FormerlySerializedAs("specialAttackBase")] [HideInInspector]
     public SpecialAttack specialAttack;
+
+    [SerializeField] private GameObject wandModel;
    
     private void Awake()
     {
@@ -34,5 +36,9 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Inputs.onMove.AddListener(movement.Move);
+        GameManager.onGameStart.AddListener(() =>
+        {
+            wandModel.SetActive(true);
+        });
     }
 }

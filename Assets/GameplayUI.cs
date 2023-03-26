@@ -17,6 +17,7 @@ public class GameplayUI : UnitySingleton<GameplayUI>
     [Header("Announcer")]
     public float duration = 5f;
     public float fadeDuration = 1f;
+    public Wand wand;
 
 
     private void Start()
@@ -28,6 +29,14 @@ public class GameplayUI : UnitySingleton<GameplayUI>
         });
         
         announceTextCanvasGroup.alpha = 0;
+        
+        
+    }
+
+    private void LateUpdate()
+    {
+                    
+        cooldownImage.fillAmount = wand.cooldownLeft / wand.coolDown;
     }
 
 
